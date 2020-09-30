@@ -1,24 +1,24 @@
 apiVersion: wkp.weave.works/v1alpha1
 kind: Workspace
 metadata:
-  name: gl-demo
+  name: gh-demo
   namespace: wkp-workspaces
 spec:
   interval: 1m
   suspend: false
   gitProvider:
-    type: gitlab
-    hostname: gitlab.com
+    type: githubb
+    hostname: github.com
     tokenRef:
-      name: gitlab-token
+      name: github-token
   gitRepository:
-    name: gitlab-workspace
-    owner: GGPGroup # <- replace org with your GitHub organization
+    name: github-workspace
+    owner: wkp-example-org # <- replace org with your GitHub organization
     teams:
-      - GGPGroup2
+      - team-victor
   clusterScope:
-    role: workspace-memberZ
+    role: workspace-member
     namespaces:
-      - name: gl-demo-app
-      - name: gl-demo-db
+      - name: gh-demo-app
+      - name: gh-demo-db
     networkPolicy: workspace-isolation
