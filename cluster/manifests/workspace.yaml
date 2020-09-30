@@ -1,0 +1,24 @@
+apiVersion: wkp.weave.works/v1alpha1
+kind: Workspace
+metadata:
+  name: gh-demo
+  namespace: wkp-workspaces
+spec:
+  interval: 1m
+  suspend: false
+  gitProvider:
+    type: github
+    hostname: github.com
+    tokenRef:
+      name: github-token
+  gitRepository:
+    name: github-workspace
+    owner: wkp-example-org # <- replace org with your GitHub organization
+    teams:
+      - team-victor
+  clusterScope:
+    role: workspace-memberZ
+    namespaces:
+      - name: gh-demo-app
+      - name: gh-demo-db
+    networkPolicy: workspace-isolation
