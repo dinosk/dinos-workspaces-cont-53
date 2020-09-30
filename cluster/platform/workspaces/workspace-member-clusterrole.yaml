@@ -8,7 +8,6 @@ rules:
   - apps
   - autoscaling
   - batch
-  - sealedsecrets.binami.com
   - bitnami.com
   - coordination.k8s.io
   - events.k8s.io
@@ -39,7 +38,7 @@ rules:
   - horizontalpodautoscalers
   - cronjobs
   - jobs
-  - sealedsecrets.bitnami.com
+  - sealedsecrets
   - leases
   - events
   - ingresses
@@ -55,10 +54,26 @@ rules:
   - ingresses
   - alerts
   - providers
-  - providers
   - receivers
   - gitrepositories
   - helmcharts
   - helmrepositoies
   verbs:
   - '*'
+- apiGroups:
+  - ""
+  resources:
+  - resourcequotas
+  - limitranges
+  verbs:
+  - get
+  - list
+  - watch
+- apiGroups:
+  - networking.k8s.io
+  resources:
+  - networkpolicies
+  verbs:
+  - get
+  - list
+  - watch
